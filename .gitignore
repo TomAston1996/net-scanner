@@ -1,0 +1,13 @@
+#Virtual Environment
+/venv
+
+#Misc
+build/
+__pycache__
+.pytest_cache
+.vscode
+
+__pycache__
+
+#Local Notes
+helper.txt
