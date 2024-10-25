@@ -46,12 +46,10 @@ class Log(object):
 
     def __new__(cls):
         if cls._instance is None:
-            print('Logger Singleton Init')
             cls._instance = super(Log, cls).__new__(cls)
         return cls._instance
 
     def __check_dir_exists(self) -> None:
-        print(f"Checking dir -  {self._filepath}")
         if not os.path.exists(self._filepath):
             print("mkdir NetScanner")
             os.mkdir(self._filepath)
