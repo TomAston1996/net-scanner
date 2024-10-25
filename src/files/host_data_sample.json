@@ -1,0 +1,98 @@
+{
+    "hostnames": [
+        {
+            "name": "host.docker.internal",
+            "type": "PTR"
+        }
+    ],
+    "addresses": {
+        "ipv4": "192.168.1.144"
+    },
+    "vendor": {},
+    "status": {
+        "state": "up",
+        "reason": "localhost-response"
+    },
+    "uptime": {
+        "seconds": "39136",
+        "lastboot": "Fri Oct 25 10:52:14 2024"
+    },
+    "tcp": {
+        "135": {
+            "state": "open",
+            "reason": "syn-ack",
+            "name": "msrpc",
+            "product": "",
+            "version": "",
+            "extrainfo": "",
+            "conf": "3",
+            "cpe": ""
+        },
+        "139": {
+            "state": "open",
+            "reason": "syn-ack",
+            "name": "netbios-ssn",
+            "product": "",
+            "version": "",
+            "extrainfo": "",
+            "conf": "3",
+            "cpe": ""
+        },
+        "445": {
+            "state": "open",
+            "reason": "syn-ack",
+            "name": "microsoft-ds",
+            "product": "",
+            "version": "",
+            "extrainfo": "",
+            "conf": "3",
+            "cpe": ""
+        },
+        "5432": {
+            "state": "open",
+            "reason": "syn-ack",
+            "name": "postgresql",
+            "product": "",
+            "version": "",
+            "extrainfo": "",
+            "conf": "3",
+            "cpe": ""
+        }
+    },
+    "portused": [
+        {
+            "state": "open",
+            "proto": "tcp",
+            "portid": "135"
+        },
+        {
+            "state": "closed",
+            "proto": "tcp",
+            "portid": "1"
+        },
+        {
+            "state": "closed",
+            "proto": "udp",
+            "portid": "40281"
+        }
+    ],
+    "osmatch": [
+        {
+            "name": "Microsoft Windows 10 1607",
+            "accuracy": "100",
+            "line": "69748",
+            "osclass": [
+                {
+                    "type": "general purpose",
+                    "vendor": "Microsoft",
+                    "osfamily": "Windows",
+                    "osgen": "10",
+                    "accuracy": "100",
+                    "cpe": [
+                        "cpe:/o:microsoft:windows_10:1607"
+                    ]
+                }
+            ]
+        }
+    ]
+}

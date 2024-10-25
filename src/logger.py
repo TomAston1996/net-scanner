@@ -39,20 +39,14 @@ class Log(object):
 
     _instance = None
 
-    _filepath = f"{os.getenv('APPDATA')}/NetScanner/"
-    _filename = r"NetScannerLog.json"
+    def __init__(self):
+        raise RuntimeError('Call get_instance() instead')
 
-    _main_view = None
-
-    def __new__(cls):
+    @classmethod
+    def get_instance(cls):
         if cls._instance is None:
-            cls._instance = super(Log, cls).__new__(cls)
+            cls._instance = cls.__new__(cls)
         return cls._instance
-
-    def __check_dir_exists(self) -> None:
-        if not os.path.exists(self._filepath):
-            print("mkdir NetScanner")
-            os.mkdir(self._filepath)
 
     def log_error(self, error_number: int, error_message: str, error_location: str, error_object: Exception,  additional_data: str) -> None:
         '''
@@ -70,7 +64,6 @@ class Log(object):
         
         print("[{}][Error] {}: {}".format( logger_print['Time'], error_number, error_message))
         
-        self.__logger_file_print(logger_print)
 
     def log_info(self, info_message: str, info_location: str) -> None:
         '''
@@ -84,9 +77,4 @@ class Log(object):
         logger_print['Version number'] = '1.0'
         
         print("[{}][INFO] {}: {}".format( logger_print['Time'], info_location, info_message))
-        self.__logger_file_print(logger_print)
 
-    def __logger_file_print(self, logger_json: dict):
-        self.__check_dir_exists()
-        with open(self._filepath + self._filename, 'a', encoding='utf-8') as file:
-            file.write(json.dumps(logger_json, indent=4)+',\n')

@@ -11,6 +11,7 @@ Author: Tom Aston
 '''
 
 import nmap
+import json
 import ipaddress
 import re
 
@@ -21,46 +22,58 @@ class Scanner(IScan):
     '''
     Brief: network port scannner
     '''
-
-    log = Log()
+    log = Log.get_instance()
 
     def __init__(self) -> None:
         '''
         Brief: scanner contructor method
         '''
         self.nm = nmap.PortScanner()
-        self._scan_ip_range()
 
-    def _scan_ip_range(self) -> None:
+
+    def _scan_ip_range(self, ip_range: str) -> None:
         '''
         Brief: scan ip range as part of object initialisation
 
         -sS performs a TCP SYN port scan. This type of scan is relatively quick but also stealthy as it only completes half handshake
         -O enables OS detection
         '''
-        self.nm.scan(hosts='192.168.1.1/24', arguments='-sS -O')
+        self.log.log_info('Scanning all IPs within range. This can take a while...', 'scanner.py')
+        self.nm.scan(hosts=ip_range, arguments='-sS -O')
+        self.log.log_info('Network scan complete', 'scanner.py')
 
-    def scan(self, ) -> None:
+
+    def scan(self, ip_range: str) -> None:
         '''
         Brief: entry method
         '''
+        self._scan_ip_range(ip_range)
         self._get_all_hosts()
+
 
     def _get_all_hosts(self) -> list[str]:
         '''
         Brief: find all available hosts on the network
         '''
-        self.log.log_info('finding all hosts...', 'scanner.py')
-
         for host in self.nm.all_hosts():
+            os_match = self.nm[host]["osmatch"]
             print('----------------------------------------------------')
             print(f'Host : {host} ({self.nm[host].hostname()})')
+            print(f'Host OS: {os_match[0]["name"] if len(os_match) > 0 else "No Match"}')
             print(f'State : {self.nm[host].state()}')
             for proto in self.nm[host].all_protocols():
                 print('----------')
-                print('Protocol : %s' % proto)
+                print(f'Protocol : {proto}')
 
                 lport = self.nm[host][proto].keys()
                 for port in lport:
-                    print ('port : %s\tstate : %s' % (port, self.nm[host][proto][port]['state']))
+                    state = self.nm[host][proto][port]['state']
+                    print(f'port : {port}\tstate : {state}')
+            print('\n')
+        
+        self.log.log_info("Port & OS scan complete", "scanner.py")
+
+        return []
+
+
             

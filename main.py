@@ -24,8 +24,7 @@ if __name__ == "__main__":
     print("\n* https://www.tomaston.dev                                  *")
     print("\n****************************************************************")
     
-    #set up Logger singleton instance
-    logger = Log()
+    logger = Log.get_instance() # Singleton
 
-    # scanner = Scanner()
-    # scanner.scan()
+    scanner = Scanner()
+    scanner.scan('192.168.1.1/24')
