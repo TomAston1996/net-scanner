@@ -27,4 +27,6 @@ if __name__ == "__main__":
     logger = Log.get_instance() # Singleton
 
     scanner = Scanner()
-    scanner.scan('192.168.1.1/24')
+    scanner.set_ip_range('192.168.1.1/24')
+    scanner.scan()
+    scanner.get_host_info()

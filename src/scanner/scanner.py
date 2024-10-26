@@ -12,22 +12,10 @@ Author: Tom Aston
 
 import nmap
 
-from typing import TypedDict
-
 from src.logger import Log
 from src.scanner.iscan import IScan
-
-class PortInfo(TypedDict):
-    port: str
-    port_name: str
-    port_state: str
-
-class HostInfo(TypedDict):
-    host_name: str
-    host_os: str
-    host_state: str
-    protocol: str
-    ports: list[PortInfo]
+from src.scanner.iscan import HostInfo
+from src.scanner.iscan import PortInfo
 
 class Scanner(IScan):
     '''
@@ -49,14 +37,21 @@ class Scanner(IScan):
         'port_state': '',
     }
 
+    IP_RANGE: str = ''
+
     def __init__(self) -> None:
         '''
         Brief: scanner contructor method
         '''
         self.nm = nmap.PortScanner()
 
+    def set_ip_range(self, ip_range: str) -> None:
+        '''
+        Brief: set ip range to be scanned - can be an IP address or range
+        '''
+        self.IP_RANGE = ip_range
 
-    def _scan_ip_range(self, ip_range: str) -> None:
+    def _scan_ip_range(self) -> None:
         '''
         Brief: scan ip range as part of object initialisation
 
@@ -64,19 +59,18 @@ class Scanner(IScan):
         -O enables OS detection
         '''
         self.log.log_info('Scanning all IPs within range. This can take a while...', 'scanner.py')
-        self.nm.scan(hosts=ip_range, arguments='-sS -O')
+        self.nm.scan(hosts=self.IP_RANGE, arguments='-sS -O')
         self.log.log_info('Network scan complete', 'scanner.py')
 
 
-    def scan(self, ip_range: str) -> None:
+    def scan(self) -> None:
         '''
         Brief: entry method
         '''
-        self._scan_ip_range(ip_range)
-        self._get_host_info()
+        self._scan_ip_range()
 
 
-    def _get_host_info(self) -> list[HostInfo]:
+    def get_host_info(self) -> list[HostInfo]:
         '''
         Brief: find all available hosts on the network
         '''
@@ -125,6 +119,4 @@ class Scanner(IScan):
         self.log.log_info("Port & OS scan complete", "scanner.py")
 
         return hosts_info
-
-
-            
+    
