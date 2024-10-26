@@ -10,7 +10,7 @@ from src.scanner.scanner import Scanner
 
 if __name__ == "__main__":
 
-    # Basic user interface header
+    # user interface header
     print(r"""
      _   _      _    _____                                 
     | \ | |    | |  / ____|                                
@@ -24,9 +24,13 @@ if __name__ == "__main__":
     print("\n* https://www.tomaston.dev                                  *")
     print("\n****************************************************************")
     
-    logger = Log.get_instance() # Singleton
+    logger = Log.get_instance() # singleton
 
     scanner = Scanner()
-    scanner.set_ip_range('192.168.1.1/24')
+
+    #for windows use ipconfig to obtain IPv4 LAN addresses & subnet mask to find range
+    # scanner.set_ip_range('192.168.1.1/24')
+    scanner.set_ip_range('192.168.1.254')
+    
     scanner.scan()
     scanner.get_host_info()

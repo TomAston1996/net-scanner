@@ -11,6 +11,7 @@ Author: Tom Aston
 '''
 
 import nmap
+import json
 
 from src.logger import Log
 from src.scanner.iscan import IScan
@@ -59,7 +60,7 @@ class Scanner(IScan):
         -O enables OS detection
         '''
         self.log.log_info('Scanning all IPs within range. This can take a while...', 'scanner.py')
-        self.nm.scan(hosts=self.IP_RANGE, arguments='-sS -O')
+        self.nm.scan(hosts=self.IP_RANGE, arguments='-sS -O -sV')
         self.log.log_info('Network scan complete', 'scanner.py')
 
 
@@ -104,6 +105,8 @@ class Scanner(IScan):
                     port_state = self.nm[host][proto][port]['state']
                     port_name = self.nm[host][proto][port]['name']
 
+                    # self.to_json(self.nm[host])
+
                     port_info['port'] = port
                     port_info['port_name'] = port_name
                     port_info['port_state'] = port_state
@@ -119,4 +122,12 @@ class Scanner(IScan):
         self.log.log_info("Port & OS scan complete", "scanner.py")
 
         return hosts_info
+    
+    def to_json(self, dict: dict) -> None:
+        '''
+        Brief: dictionary to json
+        '''
+        with open("./local/out.json", "w") as outfile: 
+            json.dump(dict, outfile)
+
     
