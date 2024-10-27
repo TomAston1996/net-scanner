@@ -29,8 +29,10 @@ if __name__ == "__main__":
     scanner = Scanner()
 
     #for windows use ipconfig to obtain IPv4 LAN addresses & subnet mask to find range
-    scanner.set_ip_range('192.168.1.1/24')
-    # scanner.set_ip_range('192.168.1.254')
+    # scanner.set_ip_range('192.168.1.1/24')
+    scanner.set_ip_range('192.168.1.45')
     
     scanner.scan()
     scanner.get_host_info()
+
+    

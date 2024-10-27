@@ -18,6 +18,7 @@ class PortInfo(TypedDict):
     port: str
     port_name: str
     port_state: str
+    port_cpe: str
 
 
 class HostInfo(TypedDict):
@@ -28,7 +29,7 @@ class HostInfo(TypedDict):
     ports: list[PortInfo]
 
 
-class IScan(metaclass=ABCMeta):
+class IScanner(metaclass=ABCMeta):
     '''
     Brief:     interface for scanner class
     '''

@@ -14,11 +14,11 @@ import nmap
 import json
 
 from src.logger import Log
-from src.scan.iscanner import IScan
+from src.scan.iscanner import IScanner
 from src.scan.iscanner import HostInfo
 from src.scan.iscanner import PortInfo
 
-class Scanner(IScan):
+class Scanner(IScanner):
     '''
     Brief: network port scannner
     '''
@@ -74,6 +74,9 @@ class Scanner(IScan):
     def get_host_info(self) -> list[HostInfo]:
         '''
         Brief: find all available hosts on the network
+
+        CPE=Common Platform Enumeration
+        i.e. cpe:/o:linux:linux_kernel where cpe:/o:{vendor}:{product}
         '''
         hosts_info = []
         
@@ -104,12 +107,14 @@ class Scanner(IScan):
                     
                     port_state = self.nm[host][proto][port]['state']
                     port_name = self.nm[host][proto][port]['name']
+                    port_cpe = self.nm[host][proto][port]['cpe']
 
                     # self.to_json(self.nm[host])
 
                     port_info['port'] = port
                     port_info['port_name'] = port_name
                     port_info['port_state'] = port_state
+                    port_info['port_cpe'] = port_cpe
 
                     host_info['ports'].append(port_info)
                     
