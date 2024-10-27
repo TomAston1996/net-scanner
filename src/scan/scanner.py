@@ -14,9 +14,9 @@ import nmap
 import json
 
 from src.logger import Log
-from src.scanner.iscan import IScan
-from src.scanner.iscan import HostInfo
-from src.scanner.iscan import PortInfo
+from src.scan.iscanner import IScan
+from src.scan.iscanner import HostInfo
+from src.scan.iscanner import PortInfo
 
 class Scanner(IScan):
     '''
