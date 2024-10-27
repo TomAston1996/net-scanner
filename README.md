@@ -13,6 +13,12 @@ The goal of NetScanner is to create an all-in-one CLI tool for exporing network 
 
 Functionality will include host discovery, port scanning, os detection, and a software vulnerability assessment. An automated report for the network will be produced as a result.
 
+Features:
+- Host and CPE discovery using NMAP
+- Vulnerability assessment based on CPE's identified using NVD (National Vulnerability Database) API
+- Automated report generation
+- CLI Interface to improve Engineer workflow and abract complexity
+
 ## 🧑‍💻 Tech Stack
 
 ![Python]
@@ -21,6 +27,9 @@ Functionality will include host discovery, port scanning, os detection, and a so
 
 ### Dependencies
 ``` pip install -r requirements.txt``` will install all dependcies required
+
+### API Key
+Request an API Key from https://nvd.nist.gov/developers/request-an-api-key and place it in your ```.env``` file as 'NVD_API_KEY'
 
 ### Run Locally
 ``` python ./main.py``` will run the CLI tool locally
