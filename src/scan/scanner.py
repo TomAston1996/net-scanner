@@ -58,6 +58,7 @@ class Scanner(IScanner):
 
         -sS performs a TCP SYN port scan. This type of scan is relatively quick but also stealthy as it only completes half handshake
         -O enables OS detection
+        -sV enables version detection
         '''
         self.log.log_info('Scanning all IPs within range. This can take a while...', self.__class__.__name__)
         self.nm.scan(hosts=self.IP_RANGE, arguments='-sS -O -sV')
