@@ -16,6 +16,7 @@ class PortInfo(TypedDict):
     port_name: str
     port_state: str
     port_cpe: str
+    port_version: str
 
 
 class HostInfo(TypedDict):

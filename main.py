@@ -35,8 +35,19 @@ if __name__ == "__main__":
 
     vuln_searcher = VulnSearcher(scanner, None)
 
-    vuln_searcher.scan_hosts()
-
-    vuln_searcher.search_vulnerability_on_cpe_criteria()
-
+    has_host_scanned = False
+    while (not has_host_scanned):
+        print('Start host scan? (y/n): ')
+        host_scan_response = str(input()).lower()
+        if (host_scan_response == 'y'): 
+            vuln_searcher.scan_hosts()
+            has_host_scanned = True
     
+
+    print('Conduct vulnerability scan? (y/n): ')
+    vuln_scan_response = str(input()).lower()
+    if (vuln_scan_response == 'y'):
+        vuln_searcher.search_vulnerability_on_cpe_criteria()
+    
+    #TODO implement reset method in Scanner and VulnSearcher
+    print('Reset? (y/n): ')

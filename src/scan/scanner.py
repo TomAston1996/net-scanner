@@ -103,6 +103,7 @@ class Scanner(IScanner):
                     port_state = self.nm[host][proto][port]['state']
                     port_name = self.nm[host][proto][port]['name']
                     port_cpe = self.nm[host][proto][port]['cpe']
+                    port_version = self.nm[host][proto][port]['version']
 
                     # self.to_json(self.nm[host])
 
@@ -110,10 +111,11 @@ class Scanner(IScanner):
                     port_info['port_name'] = port_name
                     port_info['port_state'] = port_state
                     port_info['port_cpe'] = port_cpe
+                    port_info['port_version'] = port_version
 
                     host_info['ports'].append(port_info)
                     
-                    print(f'port : {port} ({port_name})\tstate : {port_state}')
+                    print(f'port : {port} ({port_name})\tstate : {port_state}\tcpe : {port_cpe}\tversion : {port_version}')
 
             hosts_info.append(host_info)
 
