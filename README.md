@@ -7,7 +7,7 @@
 
 # NetScanner
 
-The goal of NetScanner is to create an all-in-one CLI tool for exporing network vulnerabilities. The tool will utilise NMAP amongst other libraries to conduct a series of vulnerability tests to help improve Cybersecurity Engineer workflow.
+The goal of NetScanner is to create an all-in-one CLI tool for exploring network vulnerabilities. The tool will utilise NMAP amongst other libraries to conduct a series of vulnerability tests to help improve Cybersecurity Engineer workflow.
 
 ![cli](./images/cli.png)
 
