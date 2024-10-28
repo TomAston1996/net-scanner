@@ -5,23 +5,22 @@
 # | |\  |  __/ |_ ____) | (_| (_| | | | | | | |  __/ |   
 # |_| \_|\___|\__|_____/ \___\__,_|_| |_|_| |_|\___|_| 
 '''
-File: iscan.py
-Brief: scanner interface
+File: types.py
+Brief: contains all custom types used in net-scanner
 Author: Tom Aston
 '''
+from typing import TypedDict
 
-from abc import ABCMeta, abstractmethod
+class PortInfo(TypedDict):
+    port: str
+    port_name: str
+    port_state: str
+    port_cpe: str
 
-from src.types.types import HostInfo
 
-
-class IScanner(metaclass=ABCMeta):
-    '''
-    Brief:     interface for scanner class
-    '''
-
-    @abstractmethod
-    def get_host_info(self) -> list[HostInfo]:
-        '''
-        Brief: returns a list of host info from the
-        '''
+class HostInfo(TypedDict):
+    host_name: str
+    host_os: str
+    host_state: str
+    protocol: str
+    ports: list[PortInfo]

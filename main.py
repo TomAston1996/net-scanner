@@ -7,6 +7,7 @@
  
 from src.logger import Log
 from src.scan.scanner import Scanner
+from src.exploit.vuln_searcher import VulnSearcher
 
 if __name__ == "__main__":
 
@@ -30,9 +31,12 @@ if __name__ == "__main__":
 
     #for windows use ipconfig to obtain IPv4 LAN addresses & subnet mask to find range
     # scanner.set_ip_range('192.168.1.1/24')
-    scanner.set_ip_range('192.168.1.45')
-    
-    scanner.scan()
-    scanner.get_host_info()
+    scanner.set_ip_range('192.168.1.144')
+
+    vuln_searcher = VulnSearcher(scanner, None)
+
+    vuln_searcher.scan_hosts()
+
+    vuln_searcher.search_vulnerability_on_cpe_criteria()
 
     

@@ -15,8 +15,8 @@ import json
 
 from src.logger import Log
 from src.scan.iscanner import IScanner
-from src.scan.iscanner import HostInfo
-from src.scan.iscanner import PortInfo
+from src.types.types import HostInfo
+from src.types.types import PortInfo
 
 class Scanner(IScanner):
     '''
@@ -59,16 +59,9 @@ class Scanner(IScanner):
         -sS performs a TCP SYN port scan. This type of scan is relatively quick but also stealthy as it only completes half handshake
         -O enables OS detection
         '''
-        self.log.log_info('Scanning all IPs within range. This can take a while...', 'scanner.py')
+        self.log.log_info('Scanning all IPs within range. This can take a while...', self.__class__.__name__)
         self.nm.scan(hosts=self.IP_RANGE, arguments='-sS -O -sV')
-        self.log.log_info('Network scan complete', 'scanner.py')
-
-
-    def scan(self) -> None:
-        '''
-        Brief: entry method
-        '''
-        self._scan_ip_range()
+        self.log.log_info('Network scan complete', self.__class__.__name__)
 
 
     def get_host_info(self) -> list[HostInfo]:
@@ -78,6 +71,8 @@ class Scanner(IScanner):
         CPE=Common Platform Enumeration
         i.e. cpe:/o:linux:linux_kernel where cpe:/o:{vendor}:{product}
         '''
+        self._scan_ip_range()
+
         hosts_info = []
         
         for host in self.nm.all_hosts():
@@ -120,19 +115,21 @@ class Scanner(IScanner):
                     
                     print(f'port : {port} ({port_name})\tstate : {port_state}')
 
-            hosts_info.append(hosts_info)
+            hosts_info.append(host_info)
 
             print('\n')
         
-        self.log.log_info("Port & OS scan complete", "scanner.py")
+        self.log.log_info("Port & OS scan complete", self.__class__.__name__)
+
+        self.to_json(host_info, 'test')
 
         return hosts_info
     
-    def to_json(self, dict: dict) -> None:
+    def to_json(self, dict: dict, file_name: str) -> None:
         '''
         Brief: dictionary to json
         '''
-        with open("./local/out.json", "w") as outfile: 
+        with open(f'./local/{file_name}.json', "w") as outfile: 
             json.dump(dict, outfile)
 
     
