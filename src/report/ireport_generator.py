@@ -11,7 +11,7 @@ Author: Tom Aston
 '''
 
 from abc import ABCMeta, abstractmethod
-from typing import TypedDict
+from src.types.types import HostInfo
 
 class IReportGenerator(metaclass=ABCMeta):
     '''
@@ -19,7 +19,7 @@ class IReportGenerator(metaclass=ABCMeta):
     '''
 
     @abstractmethod
-    def out(self) -> None:
+    def generate_host_report(self, data: list[HostInfo]) -> None:
         '''
-        Brief: output report
+        Breif: output active host report to pwd
         '''

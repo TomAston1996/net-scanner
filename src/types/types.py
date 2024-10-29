@@ -20,6 +20,7 @@ class PortInfo(TypedDict):
 
 
 class HostInfo(TypedDict):
+    host_ip: str
     host_name: str
     host_os: str
     host_state: str

@@ -8,6 +8,7 @@ __pycache__
 .vscode
 local/
 .env
+hosts.csv
 
 __pycache__
 

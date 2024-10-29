@@ -12,6 +12,7 @@ Author: Tom Aston
 
 import nmap
 import json
+from yaspin import yaspin
 
 from src.logger import Log
 from src.scan.iscanner import IScanner
@@ -25,6 +26,7 @@ class Scanner(IScanner):
     log = Log.get_instance()
 
     __host_info_template: HostInfo = {
+        'host_ip': '',
         'host_name': '',
         'host_os': '',
         'host_state': '',
@@ -64,7 +66,6 @@ class Scanner(IScanner):
         self.nm.scan(hosts=self.IP_RANGE, arguments='-sS -O -sV')
         self.log.log_info('Network scan complete', self.__class__.__name__)
 
-
     def get_host_info(self) -> list[HostInfo]:
         '''
         Brief: find all available hosts on the network
@@ -84,6 +85,7 @@ class Scanner(IScanner):
             host_os = os_match[0]["name"] if len(os_match) > 0 else "No Match"
             host_state = self.nm[host].state()
 
+            host_info['host_ip'] = host
             host_info['host_name'] = host_name
             host_info['host_os'] = host_os
             host_info['host_state'] = host_state
