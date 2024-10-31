@@ -17,7 +17,7 @@ Functionality includes host discovery, port scanning, os detection, and a softwa
 
 ## 🧑‍💻 Tech Stack
 
-![Python]
+![Python] ![Pandas]
 
 ## ⚙️ Features
 
@@ -86,3 +86,4 @@ Request an API Key from https://nvd.nist.gov/developers/request-an-api-key and p
 [Bootstrap]: https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white
 [NodeJS]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
 [Python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
+[Pandas]: https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white
