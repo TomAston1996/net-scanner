@@ -76,4 +76,3 @@ class Log(object):
         logger_print['Version number'] = '1.0'
         
         print("[{}][INFO] {}: {}".format( logger_print['Time'], info_location, info_message))
-

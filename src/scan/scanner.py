@@ -136,5 +136,3 @@ class Scanner(IScanner):
         '''
         with open(f'./local/{file_name}.json', "w") as outfile: 
             json.dump(dict, outfile)
-
-    
